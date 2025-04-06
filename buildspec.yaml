@@ -68,11 +68,11 @@ phases:
 
       - echo "Listing files in dependency-check folder:"
       # - ls -al ./dependency-check
-      - ls -R ./dependency-check
+      - ls -R ./dependency-check-7.0.2
 
     
       # Navigate to the extracted directory
-      - cd dependency-check/bin
+      - cd dependency-check-7.0.2/bin
 
     
       # Make the script executable
