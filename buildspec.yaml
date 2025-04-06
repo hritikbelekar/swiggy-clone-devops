@@ -73,14 +73,15 @@ phases:
 
     
       # Navigate to the extracted directory
-      - cd dependency-check-7.0.2/bin
+      - cd dependency-check/bin
 
     
       # Make the script executable
       - chmod +x ./dependency-check.sh
     
       # Run the dependency-check scan
-      - ./dependency-check.sh --scan . --format ALL
+      - ./dependency-check.sh --project swiggy --scan /codebuild/output/src123456789/.../your-project-path --format ALL
+
       - echo "Build completed successfully!"
     
       - echo "Running SonarQube analysis result"
