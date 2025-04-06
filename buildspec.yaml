@@ -65,13 +65,14 @@ phases:
     
       # Unzip the downloaded file
       - unzip dependency-check-7.0.2-release.zip -d dependency-check
+
       - echo "Listing files in dependency-check folder:"
       # - ls -al ./dependency-check
       - ls -R ./dependency-check
 
     
       # Navigate to the extracted directory
-      - cd dependency-check-7.0.2/bin
+      - cd dependency-check/bin
 
     
       # Make the script executable
