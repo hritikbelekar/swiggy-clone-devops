@@ -64,7 +64,7 @@ phases:
       - aws s3 cp s3://swiggybuck-1/swiggy/dependency-check-7.0.2-release.zip ./dependency-check.zip
     
       # Unzip the downloaded file
-      - unzip ./dependency-check.zip -d ./dependency-check
+      - unzip dependency-check-7.0.2-release.zip -d dependency-check
       - echo "Listing files in dependency-check folder:"
       # - ls -al ./dependency-check
       - ls -R ./dependency-check
