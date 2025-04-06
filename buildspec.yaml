@@ -34,6 +34,9 @@ phases:
 
   build:
     commands:
+      - DOCKER_REGISTRY_USERNAME=$(echo "$DOCKER_REGISTRY_USERNAME" | tr -d '\n')
+      - DOCKER_REGISTRY_URL=$(echo "$DOCKER_REGISTRY_URL" | tr -d '\n')
+
       - echo "Running tests..."
       - echo "building Docker image..."
 
