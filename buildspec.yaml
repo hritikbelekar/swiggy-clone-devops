@@ -81,7 +81,8 @@ phases:
       # Make the script executable
       - chmod +x ./dependency-check.sh
     
-      # Run the dependency-check scan
+      # Run the dependency-check scan 
+      
       - ./dependency-check.sh --project swiggy --scan /codebuild/output/src123456789/.../your-project-path --format ALL
       
       - echo "Build completed successfully!"
