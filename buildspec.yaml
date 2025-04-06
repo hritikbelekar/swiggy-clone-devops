@@ -34,7 +34,8 @@ phases:
 
   build:
     commands:
-      - echo "Building Docker image..."
+      - echo "Running tests..."
+      - echp "building Docker image..."
 
       #  - cd Swiggy_clone
 
