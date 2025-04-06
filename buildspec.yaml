@@ -90,6 +90,8 @@ phases:
       - echo "Build completed successfully!"
     
       - echo "Running SonarQube analysis result"
+      - curl -I http://3.108.242.62:9000
+
       # - sonar-scanner \
       #   - Dsonar.projectKey=Swiggy \
       #   - Dsonar.sources=. \
