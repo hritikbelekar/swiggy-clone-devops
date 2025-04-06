@@ -71,7 +71,7 @@ phases:
 
     
       # Navigate to the extracted directory
-      - cd ./dependency-check/dependency-check/bin
+      - cd dependency-check-7.0.2/bin
 
     
       # Make the script executable
