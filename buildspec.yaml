@@ -95,7 +95,7 @@ phases:
       #   - Dsonar.projectKey=Swiggy \
       #   - Dsonar.sources=. \
       #   - Dsonar.host.url=http://13.201.85.180:9000
-      - sonar-scanner -Dsonar.projectKey=swiggy -Dsonar.sources=. -Dsonar.host.url=http://52.66.49.225:9000 -Dsonar.login=sqp_27b5dc10e053c0c706ca50423d97659847a0ddc9 -X
+      - sonar-scanner -Dsonar.projectKey=swiggy -Dsonar.sources=. -Dsonar.host.url=http://65.0.55.241:9000 -Dsonar.login=sqp_f438358c6b7b00845d9a7c23627e0241e635461c -X
 
 
 
