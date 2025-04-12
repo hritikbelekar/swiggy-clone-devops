@@ -114,3 +114,5 @@ artifacts:
   files:
     #- '**/*'  # copy all files 
     - appspec.yaml
+    - trivyfilescan.txt
+    - trivyimage.txt
