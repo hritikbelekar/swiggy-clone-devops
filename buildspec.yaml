@@ -15,22 +15,11 @@ phases:
     commands:
       - echo "Installing dependencies..."
       - yum install -y docker wget unzip curl --allowerasing
-
-  pre_build:
-    commands:
+      - systemctl start docker || nohup dockerd > /tmp/docker.log 2>&1 &
       - echo "Installing Trivy..."
       - wget https://github.com/aquasecurity/trivy/releases/download/v0.45.0/trivy_0.45.0_Linux-64bit.tar.gz
       - tar zxvf trivy_0.45.0_Linux-64bit.tar.gz
       - mv trivy /usr/local/bin/
-      - trivy --version
-
-      - echo "Running Trivy file scan..."
-      - trivy filesystem --exit-code 0 --no-progress . >> trivyfilescan.txt
-
-      - echo "Installing OWASP Dependency-Check..."
-      - wget https://github.com/jeremylong/DependencyCheck/releases/download/v7.0.2/dependency-check-7.0.2-release.zip
-      - unzip dependency-check-7.0.2-release.zip
-
       - echo "Installing Sonar Scanner..."
       - export SONAR_SCANNER_VERSION=4.7.0.2747
       - export SONAR_SCANNER_HOME=$HOME/.sonar/sonar-scanner-$SONAR_SCANNER_VERSION-linux
@@ -38,19 +27,36 @@ phases:
       - unzip -o $HOME/.sonar/sonar-scanner.zip -d $HOME/.sonar/
       - export PATH=$SONAR_SCANNER_HOME/bin:$PATH
       - export SONAR_SCANNER_OPTS="-server"
+      - docker info
 
-      - echo "Logging into Docker..."
+  pre_build:
+    commands:
+      - echo "Performing Trivy file scan before building the image..."
+      - trivy filesystem --exit-code 0 --no-progress . >> trivyfilescan.txt
+
+      - echo "Downloading and installing OWASP Dependency-Check..."
+      - wget https://github.com/jeremylong/DependencyCheck/releases/download/v7.0.2/dependency-check-7.0.2-release.zip
+      - unzip -o dependency-check-7.0.2-release.zip
+
       - echo "$DOCKER_REGISTRY_PASSWORD" | docker login -u "$DOCKER_REGISTRY_USERNAME" --password-stdin "$DOCKER_REGISTRY_URL"
 
   build:
     commands:
+      - DOCKER_REGISTRY_USERNAME=$(echo "$DOCKER_REGISTRY_USERNAME" | tr -d '\n')
+      - DOCKER_REGISTRY_URL=$(echo "$DOCKER_REGISTRY_URL" | tr -d '\n')
+
+      - echo "Running tests..."
       - echo "Building Docker image..."
       - docker build -t "$DOCKER_REGISTRY_URL/$DOCKER_REGISTRY_USERNAME/swiggy:latest" .
       - docker push "$DOCKER_REGISTRY_URL/$DOCKER_REGISTRY_USERNAME/swiggy:latest"
 
   post_build:
     commands:
-      - echo "Running Trivy image scan..."
+      - echo "Re-setting env vars..."
+      - DOCKER_REGISTRY_USERNAME=$(echo "$DOCKER_REGISTRY_USERNAME" | tr -d '\n')
+      - DOCKER_REGISTRY_URL=$(echo "$DOCKER_REGISTRY_URL" | tr -d '\n')
+
+      - echo "Performing Trivy image scan after building the image..."
       - trivy image "$DOCKER_REGISTRY_URL/$DOCKER_REGISTRY_USERNAME/swiggy:latest" >> trivyimage.txt
 
       - echo "Running OWASP Dependency-Check scan..."
