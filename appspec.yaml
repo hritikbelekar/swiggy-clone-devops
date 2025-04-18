@@ -1,6 +1,4 @@
-mkdir ecs-deploy
-cd ecs-deploy
-echo 'version: 0.0
+version: 0.0
 Resources:
   - TargetService:
       Type: AWS::ECS::Service
@@ -8,4 +6,4 @@ Resources:
         TaskDefinition: "arn:aws:ecs:ap-south-1:024848474241:task-definition/swiggy:4"
         LoadBalancerInfo:
           ContainerName: "swiggy"
-          ContainerPort: 3000' > appspec.yaml
+          ContainerPort: 3000
