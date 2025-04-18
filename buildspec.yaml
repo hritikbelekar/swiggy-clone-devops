@@ -115,4 +115,4 @@ artifacts:
     #- '**/*'  # copy all files 
     - appspec.yaml
     - trivyfilescan.txt
-    - trivyimage.txt                                                                                                                    this is my buildspec.yaml file check it and show whats getting error
+    - trivyimage.txt                                            
