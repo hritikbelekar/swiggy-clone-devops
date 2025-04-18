@@ -32,6 +32,7 @@ phases:
   post_build:
     commands:
       - echo "Running Trivy image scan..."
+      - IMAGE_NAME="$DOCKER_REGISTRY_URL/$DOCKER_REGISTRY_USERNAME/swiggy:latest"
       - trivy image "$IMAGE_NAME" > trivyimage.txt
 
 artifacts:
