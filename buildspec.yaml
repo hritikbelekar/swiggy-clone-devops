@@ -116,4 +116,4 @@ artifacts:
     #- '**/*'  # copy all files 
     - appspec.yaml
     - trivyfilescan.txt
-    - trivyimage.txt                                            
+    - trivyimage.txt  # this is my builspec file                                            
