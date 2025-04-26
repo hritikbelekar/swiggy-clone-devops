@@ -105,8 +105,8 @@ phases:
 #   commands:
 #     - |
 #       aws ses send-email \
-#         --from "mihirpachpande7@gmail.com" \
-#         --to "mihirpachpande7@gmail.com" \
+#         --from "hritikbelekar07@gmail.com" \
+#         --to "hritikbelekar07@gmail.com" \
 #         --subject "CodeBuild Status: $CODEBUILD_BUILD_ID" \
 #         --text "Build status: $CODEBUILD_BUILD_STATUS" \
 #         --region "ap-south-1"  
